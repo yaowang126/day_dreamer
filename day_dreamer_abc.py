@@ -10,9 +10,11 @@ class DuplicateError(Exception):
 
 class DataABC:
     
-    def add_property(self, property_name:str, property_value):
-        if self.__dict__.get(property_name):
+    def add_property(self, variable_name:str, variable_series):
+        if not isinstance(variable_name,str):
+            raise TypeError('String is required for the variable name')
+        if self.__dict__.get(variable_name):
             raise DuplicateError('This variable name is already in')
         else:
-            self.__dict__[property_name] = property_value
+            self.__dict__[variable_name] = variable_series
             
